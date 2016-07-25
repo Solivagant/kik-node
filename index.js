@@ -308,6 +308,17 @@ class Bot {
         return this;
     }
 
+    onFriendPickerMessage(handler) {
+        this.use((incoming, next) => {
+            if (incoming.isFriendPickerMessage()) {
+                handler(incoming, next);
+            } else {
+                next();
+            }
+        });
+        return this;
+    }
+
     /**
      *  @param {MessageHandlerCallback} handler
      */
